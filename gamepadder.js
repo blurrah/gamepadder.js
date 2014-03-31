@@ -8,8 +8,8 @@
 	'use strict';
 
 	// Instance code based on EightMedia's Hammer.JS https://github.com/eightmedia/hammer.js/
-	var Gamepadder = function(element, options) {
-		return new Gamepadder.Instance(element, options || {});
+	var Gamepadder = function(options) {
+		return new Gamepadder.Instance(options || {});
 	};
 
 	Gamepadder.defaults = {
@@ -35,7 +35,7 @@
 	// Previous timestamps for gamepad state;
 	Gamepadder.prevGamepadState = [];
 
-	
+
 
 	Gamepadder.READY = false;
 
@@ -85,12 +85,10 @@
 	};
 
 
-	Gamepadder.Instance = function(element, options) {
+	Gamepadder.Instance = function( options) {
 		var self = this;
 
 		setup();
-
-		this.element = element;
 
 		this.options = Gamepadder.utils.extend(
 			Gamepadder.utils.extend({}, Gamepadder.defaults),
@@ -100,7 +98,7 @@
 	};
 
 	Gamepadder.Instance.prototype = {
-		// FIREFOX ONLY: Check if gamepad connected
+		// FIREFOX ONLY: Check if gamepad is connected
 		onGamepadConnect: function(event) {
 			Gamepadder.gamepads.push(event.gamepad);
 			console.log('Controller found and added.');
@@ -187,9 +185,7 @@
 					}
 				}
 			}
-		},
-
-		log
+		}
 
 
 
